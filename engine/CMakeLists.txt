@@ -1,5 +1,6 @@
 add_library(engine STATIC
-  src/Engine.cpp)
+  src/Engine.cpp
+  src/Renderer.cpp)
 
 target_include_directories(engine
   PUBLIC include)
