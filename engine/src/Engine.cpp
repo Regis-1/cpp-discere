@@ -66,9 +66,10 @@ void Engine::run(IGame &game)
 
         game.on_update();
 
+        this->renderer.set_draw_color(0.1f, 0.1f, 0.1f);
         this->renderer.clear_screen();
 
-        game.on_render();
+        game.on_render(this->renderer);
 
         this->renderer.render();
     }

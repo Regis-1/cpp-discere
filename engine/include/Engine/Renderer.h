@@ -16,6 +16,8 @@ public:
 
     void render();
 
+    void draw_rectangle(float x, float y, float width, float height);
+
 private:
     SDL_Renderer *renderer;
 };

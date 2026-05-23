@@ -1,4 +1,4 @@
-#include "Renderer.h"
+#include "Engine/Renderer.h"
 
 Renderer::Renderer()
 {}
@@ -45,4 +45,10 @@ void Renderer::clear_screen()
 void Renderer::render()
 {
     SDL_RenderPresent(this->renderer);
+}
+
+void Renderer::draw_rectangle(float x, float y, float width, float height)
+{
+    SDL_FRect rect {x, y, width, height};
+    SDL_RenderFillRect(this->renderer, &rect);
 }
