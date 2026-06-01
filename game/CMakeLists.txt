@@ -2,7 +2,8 @@ add_library(game
   src/Game.cpp
   src/TileMap.cpp
   src/TileRegistry.cpp
-  src/World.cpp)
+  src/World.cpp
+  src/RenderSystem.cpp)
 
 target_include_directories(game
   PUBLIC include
