@@ -7,6 +7,7 @@
 #include <memory>
 
 class Renderer;
+class Input;
 
 class Game : public IGame
 {
@@ -14,7 +15,7 @@ public:
     Game();
 
     void on_start() override;
-    void on_update() override;
+    void on_update(const Input& input) override;
     void on_render(Renderer &renderer) override;
 
 private:

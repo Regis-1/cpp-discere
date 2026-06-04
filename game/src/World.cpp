@@ -1,6 +1,8 @@
 #include "Game/World.h"
-
 #include "Game/Components.h"
+#include "Engine/Input.h"
+
+#include <iostream>
 
 World::World(TileIds& tile_ids)
     : map(24, 24, tile_ids),
@@ -18,9 +20,22 @@ World::World(TileIds& tile_ids)
     color = { .r = 1.0f, .g = 0.0f, .b = 0.2f };
     add_component<CTransform>(this->villagers[1], pos);
     add_component<CColor>(this->villagers[1], color);
+}
 
+World::~World()
+{
     destroy_entity(this->villagers[0]);
     destroy_entity(this->villagers[1]);
+}
+
+void World::update(const Input &input)
+{
+    if (input.is_pressed(Action::Pause))
+    {
+        std::cout << "Action Pause was pressed." << std::endl;
+        auto &transform_comp = this->component_mngr.get_component<CTransform>(this->villagers[0]);
+        transform_comp.y += 8;
+    }
 }
 
 void World::render(Renderer &renderer, TileRegistry &tile_registry)

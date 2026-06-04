@@ -10,8 +10,9 @@ void Game::on_start()
     this->world = std::make_unique<World>(this->tile_ids);
 }
 
-void Game::on_update()
+void Game::on_update(const Input &input)
 {
+    this->world->update(input);
 }
 
 void Game::on_render(Renderer &renderer)

@@ -52,19 +52,18 @@ void Engine::run(IGame &game)
     game.on_start();
 
     SDL_Event event;
-    bool should_exit = false;
 
-    while (!should_exit)
+    while (true)
     {
-        while (SDL_PollEvent(&event))
+        this->input_manager.begin_frame();
+        this->input_manager.update();
+
+        if (this->input_manager.get_input().should_exit())
         {
-            if (event.type == SDL_EVENT_QUIT)
-            {
-                should_exit = true;
-            }
+            break;
         }
 
-        game.on_update();
+        game.on_update(this->input_manager.get_input());
 
         this->renderer.set_draw_color(0.1f, 0.1f, 0.1f);
         this->renderer.clear_screen();

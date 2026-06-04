@@ -10,12 +10,15 @@
 class TileIds;
 class Renderer;
 class World;
+class Input;
 
 class World
 {
 public:
     World(TileIds& tile_ids);
+    ~World();
 
+    void update(const Input &input);
     void render(Renderer &renderer, TileRegistry &tile_registry);
 
     Entity new_entity();

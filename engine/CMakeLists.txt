@@ -2,7 +2,9 @@ add_library(engine STATIC
   src/Engine.cpp
   src/Renderer.cpp
   src/EntityManager.cpp
-  src/ComponentManager.cpp)
+  src/ComponentManager.cpp
+  src/Input.cpp
+  src/InputManager.cpp)
 
 target_include_directories(engine
   PUBLIC include
