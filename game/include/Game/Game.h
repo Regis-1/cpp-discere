@@ -17,7 +17,7 @@ public:
 
     void on_start() override;
     void on_update(const Input& input) override;
-    void on_render(Renderer &renderer) override;
+    void on_render(Renderer& renderer) override;
 
 private:
     TileRegistry tile_registry;

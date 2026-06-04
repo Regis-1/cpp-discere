@@ -47,7 +47,7 @@ bool Engine::initialize()
     return true;
 }
 
-void Engine::run(IGame &game)
+void Engine::run(IGame& game)
 {
     game.on_start();
 

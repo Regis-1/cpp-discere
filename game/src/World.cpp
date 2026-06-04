@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-World::World(TileIds &tile_ids)
+World::World(TileIds& tile_ids)
     : map(24, 24, tile_ids)
 {
     this->villagers[0] = new_entity();
@@ -28,12 +28,12 @@ World::~World()
     destroy_entity(this->villagers[1]);
 }
 
-void World::update(const Input &input)
+void World::update(const Input& input)
 {
     if (input.is_pressed(Action::Pause))
     {
         std::cout << "Action Pause was pressed." << std::endl;
-        auto &transform_comp = this->component_mngr.get_component<CTransform>(this->villagers[0]);
+        auto& transform_comp = this->component_mngr.get_component<CTransform>(this->villagers[0]);
         transform_comp.y += 8;
     }
 }
@@ -45,7 +45,7 @@ Entity World::new_entity()
 
 void World::destroy_entity(Entity entity)
 {
-    auto &mask = this->entity_mngr.get_mask(entity);
+    auto& mask = this->entity_mngr.get_mask(entity);
 
     this->component_mngr.remove_all(entity, mask);
 

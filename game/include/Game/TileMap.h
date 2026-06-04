@@ -30,7 +30,7 @@ private:
     int width;
     int height;
 
-    TileIds &tile_ids;
+    TileIds& tile_ids;
 
     std::vector<TileId> ground;
 };

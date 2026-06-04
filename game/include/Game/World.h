@@ -13,10 +13,10 @@ class Input;
 class World
 {
 public:
-    World(TileIds &tile_ids);
+    World(TileIds& tile_ids);
     ~World();
 
-    void update(const Input &input);
+    void update(const Input& input);
 
     Entity new_entity();
     void destroy_entity(Entity entity);

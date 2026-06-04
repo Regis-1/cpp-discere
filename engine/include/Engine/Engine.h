@@ -13,7 +13,7 @@ public:
 
     bool initialize();
 
-    void run(IGame &game);
+    void run(IGame& game);
 
 private:
     SDL_Window *window;

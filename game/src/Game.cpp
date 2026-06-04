@@ -11,12 +11,12 @@ void Game::on_start()
     this->render_system = std::make_unique<RenderSystem>(*this->world);
 }
 
-void Game::on_update(const Input &input)
+void Game::on_update(const Input& input)
 {
     this->world->update(input);
 }
 
-void Game::on_render(Renderer &renderer)
+void Game::on_render(Renderer& renderer)
 {
     this->render_system->render(renderer, this->tile_registry);
 }
