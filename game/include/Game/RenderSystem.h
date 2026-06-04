@@ -3,17 +3,21 @@
 #include "Core/Types.h"
 
 class Renderer;
-class ComponentManager;
-class EntityManager;
+class World;
+class TileRegistry;
 
 class RenderSystem
 {
 public:
-    RenderSystem(ComponentManager &cm);
+    RenderSystem(const World &world);
 
-    void render(Renderer &renderer,  const EntityManager &em,
-                const ComponentManager &cm);
+    void render(Renderer &renderer, const TileRegistry &tile_reg) const;
+
+    void render_entities(Renderer &renderer) const;
+    void render_tilemap(Renderer &renderer, const TileRegistry &tile_reg) const;
 
 private:
+    const World &world;
+
     ComponentMask required;
 };

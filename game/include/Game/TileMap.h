@@ -14,16 +14,17 @@ class TileMap
 public:
     TileMap(int width, int height, TileIds ids);
 
-    [[nodiscard]]
-    const int tile_count() const;
+    const size_t size() const;
 
-    [[nodiscard]] TileId get_ground(int x, int y) const;
+    TileId get_ground(int idx) const;
+    TileId get_ground(int x, int y) const;
 
     void set_ground(int x, int y, TileId id);
 
-    [[nodiscard]] size_t to_index(int x, int y) const;
+    size_t to_index(int x, int y) const;
 
-    void draw(Renderer &renderer, const TileRegistry &tile_registry) const;
+    const int get_width() const;
+    const int get_height() const;
 
 private:
     int width;

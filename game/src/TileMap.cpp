@@ -2,7 +2,6 @@
 #include "Game/TileRegistry.h"
 
 #include <cassert>
-#include <iostream>
 
 TileMap::TileMap(int width, int height, TileIds tile_ids)
     : width(width), height(height), tile_ids(tile_ids)
@@ -15,9 +14,16 @@ TileMap::TileMap(int width, int height, TileIds tile_ids)
     set_ground(2, 3, this->tile_ids.empty);
 }
 
-const int TileMap::tile_count() const
+const size_t TileMap::size() const
 {
-    return this->width * this->height;
+    return this->ground.size();
+}
+
+TileId TileMap::get_ground(int idx) const
+{
+    assert(idx < this->ground.size());
+
+    return this->ground[idx];
 }
 
 TileId TileMap::get_ground(int x, int y) const
@@ -41,20 +47,12 @@ size_t TileMap::to_index(int x, int y) const
     return static_cast<size_t>(y * this->width + x);
 }
 
-void TileMap::draw(Renderer &renderer, const TileRegistry &tile_registry) const
+const int TileMap::get_width() const
 {
-    constexpr float tile_size = 32.0f;
-    constexpr float tile_offset = 4.0f;
+    return this->width;
+}
 
-    float x, y;
-    for (int i = 0; i < this->ground.size(); ++i)
-    {
-        const Color &c = tile_registry[this->ground[i]].color;
-        renderer.set_draw_color(c.r, c.g, c.b);
-
-        x = static_cast<float>(i % this->width) * (tile_size + tile_offset);
-        y = static_cast<float>(i / this->width) * (tile_size + tile_offset);
-
-        renderer.draw_rectangle(x, y, tile_size, tile_size);
-    }
+const int TileMap::get_height() const
+{
+    return this->height;
 }

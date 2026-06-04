@@ -3,6 +3,7 @@
 #include "Engine/IGame.h"
 #include "Game/World.h"
 #include "Game/TileRegistry.h"
+#include "Game/RenderSystem.h"
 
 #include <memory>
 
@@ -23,4 +24,6 @@ private:
     TileIds tile_ids;
 
     std::unique_ptr<World> world;
+
+    std::unique_ptr<RenderSystem> render_system;
 };

@@ -4,8 +4,6 @@
 #include "Engine/ComponentManager.hpp"
 
 #include "Game/TileMap.h"
-#include "Game/TileRegistry.h"
-#include "Game/RenderSystem.h"
 
 class TileIds;
 class Renderer;
@@ -15,14 +13,18 @@ class Input;
 class World
 {
 public:
-    World(TileIds& tile_ids);
+    World(TileIds &tile_ids);
     ~World();
 
     void update(const Input &input);
-    void render(Renderer &renderer, TileRegistry &tile_registry);
 
     Entity new_entity();
     void destroy_entity(Entity entity);
+
+    const TileMap& get_tilemap() const;
+
+    const EntityManager& get_entity_manager() const;
+    const ComponentManager& get_component_manager() const;
 
     template <typename T>
     void add_component(Entity entity, const T& component);
@@ -41,8 +43,6 @@ private:
 
     EntityManager entity_mngr;
     ComponentManager component_mngr;
-
-    RenderSystem render_system;
 
     Entity villagers[2];
 };

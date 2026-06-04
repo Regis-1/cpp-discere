@@ -1,12 +1,12 @@
 #include "Game/World.h"
 #include "Game/Components.h"
+#include "Game/TileRegistry.h"
 #include "Engine/Input.h"
 
 #include <iostream>
 
-World::World(TileIds& tile_ids)
-    : map(24, 24, tile_ids),
-      render_system(this->component_mngr)
+World::World(TileIds &tile_ids)
+    : map(24, 24, tile_ids)
 {
     this->villagers[0] = new_entity();
     this->villagers[1] = new_entity();
@@ -38,13 +38,6 @@ void World::update(const Input &input)
     }
 }
 
-void World::render(Renderer &renderer, TileRegistry &tile_registry)
-{
-    this->map.draw(renderer, tile_registry);
-
-    this->render_system.render(renderer, this->entity_mngr, this->component_mngr);
-}
-
 Entity World::new_entity()
 {
     return this->entity_mngr.new_entity();
@@ -57,4 +50,19 @@ void World::destroy_entity(Entity entity)
     this->component_mngr.remove_all(entity, mask);
 
     this->entity_mngr.destroy_entity(entity);
+}
+
+const TileMap& World::get_tilemap() const
+{
+    return this->map;
+}
+
+const EntityManager& World::get_entity_manager() const
+{
+    return this->entity_mngr;
+}
+
+const ComponentManager& World::get_component_manager() const
+{
+    return this->component_mngr;
 }
